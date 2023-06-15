@@ -1,11 +1,13 @@
 import React, {useEffect, useState} from 'react'
 import axios from 'axios';
 import {useParams} from 'react-router'
+import { useNavigate } from 'react-router-dom';
 
 
 const Planet = (props) => {
     const [planet, setPlanet] = useState('')
     const {id} =  useParams();
+    const navigate = useNavigate();
 
     useEffect(() => {
         axios.get(`https://swapi.dev/api/planets/${id}`).then(response=>{
@@ -13,6 +15,10 @@ const Planet = (props) => {
                 setPlanet(response.data)
             })
     })
+
+    const returnHome = () => {
+        navigate('/')
+    }
 
     return (
         <div>
@@ -23,6 +29,7 @@ const Planet = (props) => {
             <h3>Climate: {planet.climate}</h3>
             <h3>Terrain: {planet.terrain}</h3>
             <h3>Population: {planet.population}</h3>
+            <button onClick={returnHome}>Return To Home Page</button>
         </div>
     )
 }
