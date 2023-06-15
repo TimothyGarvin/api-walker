@@ -17,7 +17,7 @@ const People = (props) => {
         axios.get(`https://swapi.dev/api/people/${id}`).then(response=>{
                 // console.log(response);
                 setPerson(response.data)
-            })
+            }).catch (err => navigate('/error'))
     })
 
     return (

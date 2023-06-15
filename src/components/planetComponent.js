@@ -13,7 +13,8 @@ const Planet = (props) => {
         axios.get(`https://swapi.dev/api/planets/${id}`).then(response=>{
                 // console.log(response);
                 setPlanet(response.data)
-            })
+            }
+            ).catch (err => navigate('/error'))
     })
 
     const returnHome = () => {
